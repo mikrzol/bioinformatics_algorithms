@@ -1,6 +1,3 @@
-from numpy import number
-
-
 number_to_symbol = {
     0: "A",
     1: "C",

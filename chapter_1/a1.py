@@ -1,6 +1,3 @@
-import string
-
-
 # PATTERN COUNT
 def pattern_count(text: str, pattern: str) -> int:
     count = 0
