@@ -14,4 +14,4 @@ def pattern_to_number(pattern: str) -> int:
 
 
 if __name__ == '__main__':
-    print(pattern_to_number('ATGCAA'))
+    print(pattern_to_number('CGAAATTCGCAACCAGTCGGGAAT'))

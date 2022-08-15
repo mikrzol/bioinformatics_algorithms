@@ -6,8 +6,10 @@ number_to_symbol = {
 }
 
 def number_to_pattern(index: int, k: int) -> str:
+    '''
     if index == 0:
         return ''
+    '''
     if k == 1:
         return number_to_symbol[index]
     ''' STEP BY STEP EXPLANATION:
@@ -21,4 +23,6 @@ def number_to_pattern(index: int, k: int) -> str:
 
 
 if __name__ == '__main__':
-    print(number_to_pattern(5437, 8))
+    with open('chapter_1/in_f.txt', 'r') as in_f:
+        text = in_f.read().split('\n')
+        print(number_to_pattern(int(text[0]), int(text[1])))

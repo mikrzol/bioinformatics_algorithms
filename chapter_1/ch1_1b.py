@@ -1,5 +1,5 @@
 # FREQUENT WORDS
-from a1 import pattern_count
+from ch1_1a import pattern_count
 
 def frequent_words(text: str, k: int) -> list:
     all_patterns = {}
@@ -15,6 +15,6 @@ def frequent_words(text: str, k: int) -> list:
     return frequent_patterns
 
 if __name__ == '__main__':
-    txt1 = 'ACTGACTCCCACCCG'
-
-    print(frequent_words(txt1, 3))
+    with open('chapter_1/in_f.txt', 'r') as in_f:
+        text = in_f.read().split('\n')
+        print(frequent_words(text=text[0], k=int(text[1])))
