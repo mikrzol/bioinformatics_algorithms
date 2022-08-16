@@ -1,7 +1,10 @@
-from ch1_1k import computing_frequencies
-from ch1_1m import number_to_pattern
+from computing_frequencies_1k import computing_frequencies
+from number_to_pattern_1m import number_to_pattern
 
-def faster_frequent_words(text: str, k: int) -> set:
+import time
+start_time = time.time()
+
+def faster_frequent_words(text: str, k: int) -> set[str]:
     frequent_patterns = set()
     frequency_array = computing_frequencies(text, k)
 
@@ -15,6 +18,9 @@ def faster_frequent_words(text: str, k: int) -> set:
 
 
 if __name__ == '__main__':
-    with open('chapter_1/in_f.txt', 'r') as in_f:
+    with open('chapter_1/inputs/frequent_words.txt', 'r') as in_f:
         text = in_f.read().split('\n')
-        print(faster_frequent_words(text=text[0], k=int(text[1])))
+        for i in range(0, 100):
+            faster_frequent_words(text=text[0], k=int(text[1]))
+
+    print("FASTER FREQ WORDS: --- %s seconds ---" % (time.time() - start_time))

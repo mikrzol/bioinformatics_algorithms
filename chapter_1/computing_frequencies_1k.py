@@ -1,6 +1,6 @@
-from ch1_1l import pattern_to_number
+from pattern_to_number_1l import pattern_to_number
 
-def computing_frequencies(text: str, k: int) -> list:
+def computing_frequencies(text: str, k: int) -> list[int]:
     frequency_array = [0] * (4**k)
     for i in range(0, len(text)-k+1):
         pattern = text[i:i+k]
