@@ -1,8 +1,8 @@
 from neighbors_1n import neighbors
 from pattern_to_number_1l import pattern_to_number
 from number_to_pattern_1m import number_to_pattern
-import time
-from tqdm import tqdm
+# import time
+# from tqdm import tqdm
 
 def find_freq_w_mismatches_sorting(text: str, k: int, d: int) -> set[str]:
     frequent_patterns = set()
@@ -36,9 +36,8 @@ def find_freq_w_mismatches_sorting(text: str, k: int, d: int) -> set[str]:
 
 if __name__ == '__main__':
     test_seq = 'AAGCAAAGGTGGG'
-    start_time = time.time()
-    with open('chapter_1/inputs/frequent_words.txt', 'r') as in_f:
-        text = in_f.read().split('\n')
-        for i in tqdm(range(0, 100)):
-            find_freq_w_mismatches_sorting(text=text[0], k=int(text[1]), d=1)
-    print(f'=== FASTER VERSION: {time.time() - start_time} seconds ===')
+
+    with open('chapter_1/inputs/frequent_words_mismatches.txt', 'r') as in_f:
+        text, stuff = in_f.read().split('\n')
+        k, d = stuff.strip().split(' ')
+        print(' '.join([x for x in find_freq_w_mismatches_sorting(text, int(k), int(d))]))
