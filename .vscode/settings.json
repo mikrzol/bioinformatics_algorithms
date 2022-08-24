@@ -1,5 +1,6 @@
 {
-    "python.analysis.extraPaths": [
-        "${workingDirectory}/chapter_1/"
-    ]
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${env:PYTHONPATH};${workspaceFolder}/chapter_1;${workspaceFolder}/chapter_2"
+    },
+    "python.envFile": "${workspaceFolder}/.env",
 }
