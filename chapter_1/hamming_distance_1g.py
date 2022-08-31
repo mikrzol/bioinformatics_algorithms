@@ -1,7 +1,9 @@
 def hamming_distance(str1: str, str2: str) -> int:
+    '''
     if len(str1) != len(str2):
         print('Strings must have equal length')
         return
+    '''
     hamming_distance = 0
     for el1, el2 in zip(str1, str2):
         if el1 != el2:
