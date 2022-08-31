@@ -24,14 +24,14 @@ def score_motifs(motifs: list[str]) -> int:
     return sum([hamming_distance(consensus, motif) for motif in motifs])
 
 
-def greedy_motif_search(dna_seqs: list[str], k: int, t: int) -> list[str]:
+def greedy_motif_search(dna_seqs: list[str], k: int, t: int, laplace_succession: bool = False) -> list[str]:
     best_motifs = [seq[:k] for seq in dna_seqs]
 
     for kmer in tqdm([dna_seqs[0][i:i+k] for i in range(len(dna_seqs[0]) - k + 1)]):
         new_motifs = [kmer]
 
         for i in range(1, t):
-            new_motifs.append(profile_most_probable_kmer(dna_seqs[i], k, profile_matrix_list=generate_profile(new_motifs)))
+            new_motifs.append(profile_most_probable_kmer(dna_seqs[i], k, profile_matrix_list=generate_profile(new_motifs, laplace_succession)))
         if score_motifs(new_motifs) < score_motifs(best_motifs):
             best_motifs = new_motifs
     
@@ -39,8 +39,17 @@ def greedy_motif_search(dna_seqs: list[str], k: int, t: int) -> list[str]:
 
 
 if __name__ == '__main__':
+    '''
+    # REGULAR VERSION
     with open('chapter_2/inputs/greedy_motif_search.txt', 'r') as in_fh:
         text = in_fh.read().strip().split('\n')
         k, t = map(int, text[0].strip().split(' '))
         dna_seqs = text[1:]
         print(' '.join(greedy_motif_search(dna_seqs, k, t)))
+    '''
+    # WITH LAPLACE RULE OF SUCCESSION
+    with open('chapter_2/inputs/greedy_motif_laplace.txt', 'r') as in_fh:
+        text = in_fh.read().strip().split('\n')
+        k, t = map(int, text[0].strip().split(' '))
+        dna_seqs = text[1:]
+        print(' '.join(greedy_motif_search(dna_seqs, k, t, laplace_succession=True)))
