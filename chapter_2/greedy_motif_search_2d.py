@@ -24,7 +24,7 @@ def score_motifs(motifs: list[str]) -> int:
     return sum([hamming_distance(consensus, motif) for motif in motifs])
 
 
-def greedy_motif_search(dna_seqs: list[str], k: int, t: int):
+def greedy_motif_search(dna_seqs: list[str], k: int, t: int) -> list[str]:
     best_motifs = [seq[:k] for seq in dna_seqs]
 
     for kmer in tqdm([dna_seqs[0][i:i+k] for i in range(len(dna_seqs[0]) - k + 1)]):
