@@ -15,7 +15,7 @@ def kmer_probability(kmer: str, profile_dict: dict) -> float:
     return np.prod([profile_dict[nucl][i] for i, nucl in enumerate(kmer)])
 
 
-def profile_randomly_gen_kmer(seq: str, k: int, profile: list[float]):
+def profile_randomly_gen_kmer(seq: str, k: int, profile: list[float]) -> str:
     profile_dict = dict(zip(['A', 'C', 'G', 'T'], profile))
     probabilities = [kmer_probability(kmer, profile_dict) for kmer in [seq[i:i+k] for i in range(len(seq) - k + 1)]]
     # 'normalize' the probabilities
