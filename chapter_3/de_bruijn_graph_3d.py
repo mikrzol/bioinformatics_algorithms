@@ -1,10 +1,11 @@
 def de_bruijn_graph(seq: str, k: int) -> dict:
     kmers = [seq[i:i+k-1] for i in range(len(seq) - k + 2)]
     graph = {}
-    for i in range(len(kmers)-1):     # not range +1 because we go up to the second last kmer 
+    for i in range(len(kmers)-1):     # range -1 because we go up to the second last kmer 
         if kmers[i] not in graph.keys():
             graph[kmers[i]] = []
         graph[kmers[i]].append(kmers[i+1])
+        # sort only for rosalind to accept answer
         graph[kmers[i]].sort()
     
     return graph
@@ -17,6 +18,7 @@ def print_de_bruijn_graph(graph: dict) -> None:
 
 
 def format_de_bruijn_graph(graph: dict):
+    # sort only for rosalind to accept answer
     return [f"{key} -> {','.join(graph[key])}" for key in sorted(graph.keys())]
 
 
