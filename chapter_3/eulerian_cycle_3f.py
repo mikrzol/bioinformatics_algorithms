@@ -8,6 +8,8 @@ def create_graph_from_file(text: list[str]) -> None:
         neighs = line[1].split(',')
         for neigh in neighs:
             graph[line[0]].append(neigh)
+            if neigh not in graph.keys():
+                graph[neigh] = []
     
     return graph
 
@@ -45,6 +47,7 @@ def eulerian_cycle(graph: dict) -> list[str]:
         remaining_edges_num -= 1
         # move to dest
         curr = dest
+    
 
     while remaining_edges_num > 0:  # there are unused edges left
         # get first node that: 1) has unused edges, 2) is in cycle
@@ -53,7 +56,7 @@ def eulerian_cycle(graph: dict) -> list[str]:
                 curr = node
                 cycle = recreate_cycle_from_idx(cycle, i)
                 break
-
+        
         while True:
             if len(graph[curr]) == 0:   # no neighbors -> we got 'stuck'
                 break
@@ -63,7 +66,6 @@ def eulerian_cycle(graph: dict) -> list[str]:
             remaining_edges_num -= 1
             curr = dest
 
-    print('Eulerian cycle found')
     return cycle
 
 
