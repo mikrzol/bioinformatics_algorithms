@@ -3,4 +3,5 @@
         "PYTHONPATH": "${env:PYTHONPATH};${workspaceFolder}/chapter_1;${workspaceFolder}/chapter_2;${workspaceFolder}/chapter_3"
     },
     "python.envFile": "${workspaceFolder}/.env",
+    "explorer.sortOrder": "type",
 }
