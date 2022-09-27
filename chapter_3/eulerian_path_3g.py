@@ -1,6 +1,6 @@
 from random import choice
 
-def create_graph_from_file(text: list[str]) -> tuple[dict, int, int]:
+def create_graph_from_file(text: list[str], balance: bool = True) -> tuple[dict, int, int] | dict:
     graph = {}
     for line in text:
         line = line.strip().split(' -> ')
@@ -13,19 +13,22 @@ def create_graph_from_file(text: list[str]) -> tuple[dict, int, int]:
             if neigh not in graph.keys():
                 graph[neigh] = [[], 0, 0]
             graph[neigh][1] += 1
-    # find the unbalanced nodes and balance them
-    out_deg_missing = None
-    in_deg_missing = None
-    for key in graph.keys():
-        if graph[key][1] > graph[key][2]:
-            out_deg_missing = key
-            graph[key][2] += 1
-        elif graph[key][2] > graph[key][1]:
-            in_deg_missing = key
-            graph[key][1] += 1
-
-    graph[out_deg_missing][0].append(in_deg_missing)
-    return (graph, in_deg_missing, out_deg_missing)
+    
+    if balance:
+        # find the unbalanced nodes and balance them
+        out_deg_missing = None
+        in_deg_missing = None
+        for key in graph.keys():
+            if graph[key][1] > graph[key][2]:
+                out_deg_missing = key
+                graph[key][2] += 1
+            elif graph[key][2] > graph[key][1]:
+                in_deg_missing = key
+                graph[key][1] += 1
+        graph[out_deg_missing][0].append(in_deg_missing)
+        return (graph, in_deg_missing, out_deg_missing)
+    else:
+        return graph
 
 
 def recreate_cycle_from_idx(my_list: list, idx: int) -> list:
